@@ -1,3 +1,44 @@
+# Student class
+
+A Python class and unit tests for properties, state changes, dates and mocked HTTP responses.
+
+[Português (Brasil)](README.pt-BR.md)
+
+## Process record
+
+Source reviewed on 2026-10-01. The repository records a learning exercise, not a shipped product. No dated planning notes, user research or wireframes were found in the reviewed files. The architecture below describes the code that exists; it does not invent a development diary.
+
+## Idea, architecture and design
+
+`student.py` defines Student with first/last names, today's start date, an end date 365 days later and a naughty-list flag. Properties derive a full name and a demonstration email address. Methods set the flag, extend the end date and fetch a course schedule with requests. `test_students.py` supplies setup/teardown hooks and six test methods. There is no database or UI.
+
+## Run and test
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install requests
+python3 -m unittest -v test_students
+```
+
+The root has no requirements file in the reviewed listing; `requests` is imported by student.py. Tests cover full name, email, flag, date extension, HTTP success and HTTP failure. The two HTTP tests patch `student.requests.get`, so they do not need a live schedule service. Not rerun in this update; no pass or coverage claim is made.
+
+## Privacy, limitations and next checks
+
+The schedule URL contains first and last names at `company.com`; it is a demonstration endpoint, not a verified integration. Do not call it with real personal data. The request has no timeout or exception handling. Review timeouts, network errors, name encoding, date boundaries and invalid extensions before reuse. Generated email addresses are examples, not verified contacts. This is not a deployed student-management product.
+
+## Snapshots
+
+No application UI exists to capture. No screenshot was added. If terminal evidence is useful later, save a dated test-output capture under `docs/assets/`, showing the command and actual result without private paths or data. Do not invent a dashboard or claim tests passed.
+
+## Credits and licensing
+
+Based on [Code Institute's Gitpod full template](https://github.com/Code-Institute-Org/gitpod-full-template). Keep third-party course/template rights intact; no new license is assigned here. The original template README is preserved below as historical material, not current setup advice.
+
+---
+
+## Original template README (historical)
+
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 Welcome Iuri Johansson,
